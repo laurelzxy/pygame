@@ -4,6 +4,14 @@ import random
 
 class Bat( pygame.sprite.Sprite):
 
+    # variavel de classe - igual para todos os elementos da classe
+
+    scapeBat = False
+
+    @staticmethod
+    def outOfRange():
+        Bat.scapeBat = True
+
     def __init__(self, *groups):
         super().__init__(*groups)
 
@@ -25,4 +33,5 @@ class Bat( pygame.sprite.Sprite):
 
 
         if self.rect.right < 0:
+            Bat.outOfRange()
             self.kill()

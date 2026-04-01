@@ -2,6 +2,16 @@ import pygame
 
 class Shot (pygame.sprite.Sprite):
 
+    numTiros = 0 
+
+    @staticmethod
+    def somarTiros():
+        Shot.numTiros += 1
+
+    @staticmethod
+    def subtrairTiros():
+        Shot.numTiros -= 1
+
     def __init__(self, *groups):
         super().__init__(*groups)
 
@@ -11,10 +21,12 @@ class Shot (pygame.sprite.Sprite):
 
         self.speed = 4
 
+        Shot.somarTiros()
 
 
     def update(self, *args):
         self.rect.x += self.speed
 
         if self.rect.left > 840:
+            Shot.subtrairTiros()
             self.kill()
